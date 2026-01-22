@@ -20,6 +20,7 @@ public class Produto {
     @NotEmpty(message = "Informe um nome.")
     private String nome;
     private int quantidade;
+    @NotEmpty(message = "Informe um valor")
     private double valor;
     private String status;
 
