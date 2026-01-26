@@ -10,9 +10,9 @@ import lombok.Setter;
 
 
 @Entity
+@Setter
+@Getter
 public class Produto {
-    @Setter
-    @Getter
     @Id
     @GeneratedValue
     private long id;
@@ -20,7 +20,6 @@ public class Produto {
     @NotEmpty(message = "Informe um nome.")
     private String nome;
     private int quantidade;
-    @NotEmpty(message = "Informe um valor")
     private double valor;
     private String status;
 
