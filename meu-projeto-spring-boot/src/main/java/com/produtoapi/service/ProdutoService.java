@@ -19,6 +19,7 @@ public class ProdutoService {
 
 
     public Produto salvar(Produto produto){
+
         return produtoRepository.save(produto);
     }
 
@@ -41,6 +42,7 @@ public class ProdutoService {
     }
 
     public Optional<Produto> findById(Long id){
+
         return produtoRepository.findById(id);
     }
 }
