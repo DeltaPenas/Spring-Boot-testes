@@ -24,8 +24,11 @@ public class ProdutoService {
     }
 
     public void deletar(Long id){
-
-        produtoRepository.deleteById(id);
+        if(produtoRepository.existsById(id)){
+            produtoRepository.deleteById(id);
+        }else{
+            throw new RuntimeException("Produto não encontrado, ou id errado");
+        }
 
     }
 
