@@ -14,12 +14,12 @@ import lombok.Setter;
 public class Cliente {
 
     @Id
-    @GeneratedValue
-    private long id;
+    @@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotEmpty(message = "informe um nome.")
     private String nome;
-    private long cpf;
+    private String cpf;
     private String telefone;
 
     public Cliente(String nome, long cpf, String telefone){
