@@ -21,8 +21,13 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    public void deletar(long id){
-        clienteRepository.deleteById(id);
+    public void deletar(Long id){
+        if(clienteRepository.existsById(id)){
+            clienteRepository.deleteById(id);
+        }else{
+            throw new RuntimeException("cliente não encontrado ou id errado");
+        }
+        
     }
 
     public Cliente atualizar(Long id, Cliente cliente){
