@@ -37,4 +37,9 @@ public class ProdutoController {
         return produtoService.findById(id);
     }
 
+    @PostMapping("/salvarLista")
+    public List<Produto> salvarLista(@RequestBody List<Produto> produtos){
+        return produtoService.salvarLista(produtos);
+    }
+
 }
