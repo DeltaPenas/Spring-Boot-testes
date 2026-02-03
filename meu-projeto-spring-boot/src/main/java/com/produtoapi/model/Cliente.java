@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Cliente {
 
     @Id
-    @@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "informe um nome.")
@@ -22,7 +22,7 @@ public class Cliente {
     private String cpf;
     private String telefone;
 
-    public Cliente(String nome, long cpf, String telefone){
+    public Cliente(String nome, String cpf, String telefone){
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
