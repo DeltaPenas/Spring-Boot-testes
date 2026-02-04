@@ -1,4 +1,5 @@
 package com.produtoapi.service;
+import com.produtoapi.model.Produto;
 import com.produtoapi.repository.ClienteRepository;
 import com.produtoapi.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,10 @@ public class ClienteService {
 
     public Optional<Cliente> findById(Long id){
         return clienteRepository.findById(id);
+    }
+
+    public List<Cliente> salvarLista(List<Cliente> clientes){
+        return clienteRepository.saveAll(clientes);
     }
 
 }

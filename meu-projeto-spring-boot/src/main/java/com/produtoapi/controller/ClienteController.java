@@ -2,6 +2,7 @@ package com.produtoapi.controller;
 
 
 
+import com.produtoapi.model.Produto;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.produtoapi.model.Cliente;
@@ -39,6 +40,10 @@ public class ClienteController {
     @GetMapping("/{id}")
     public Optional<Cliente> findByid(@PathVariable Long id){
         return clienteService.findById(id);
+    }
+    @PostMapping("/salvarLista")
+    public List<Cliente> salvarLista(@RequestBody List<Cliente> clientes){
+        return clienteService.salvarLista(clientes);
     }
 
 }
