@@ -21,26 +21,75 @@
     </tbody>
 </table>
 
+<table id="clientesTable" border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+
+<!-- Total de produtos e clientes -->
+<div id="totalProdutos">Total de Produtos: 0</div>
+<div id="totalClientes">Todal de Clientes: 0 </div>
+
+
 <!-- Mensagem de erro -->
 <div id="erroMensagem" style="color: red; display: none;">
-    Erro ao buscar produtos. Por favor, tente novamente mais tarde.
+    Erro ao buscar Dados. Por favor, tente novamente mais tarde.
 </div>
-
-<!-- Total de produtos -->
-<div id="totalProdutos">Total de Produtos: 0</div>
 
 
 
 <script>
+    function listarClientes(){
+        fetch('http://localhost:8080/clientes').then(response => {
+            if(!response.ok){
+                throw new Error('Erro na rede: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tableBody = document.getElementById('clientesTable').getElementsByTagName('tbody')[0];
+            let totalClientes = 0;
+
+            data.forEach(cliente => {
+                const row = tableBody.insertRow();
+                const cellId = row.insertCell(0);
+                const cellNome = row.insertCell(1);
+                const cellCpf = row.insertCell(2);
+                const cellTelefone = row.insertCell(3);
+
+                cellId.textContent = cliente.id;
+                cellNome.textContent = cliente.nome;
+                cellCpf.textContent = cliente.cpf;
+                cellTelefone.textContent = cliente.telefone;
+                totalClientes++
+            });
+            document.getElementById('totalClientes').textContent = 'Total de Clientes: ' + totalClientes;
+        }).catch(error => {
+                console.error('Erro ao buscar Clientes:', error); // Exibe o erro no console
+                
+                document.getElementById('erroMensagem').style.display = 'block'; // Exibe a mensagem de erro
+        });
+        
+
+
+    }
+
     function listarProdutos() {
         fetch('http://localhost:8080/produtos')
             .then(response => {
                 if (!response.ok) {
-
-
                     throw new Error('Erro na rede: ' + response.status);
                 }
-
                 return response.json();
             })
             .then(data => {
@@ -70,6 +119,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', listarProdutos);
+    document.addEventListener('DOMContentLoaded', listarClientes);
 </script>
 </body>
 </html>
