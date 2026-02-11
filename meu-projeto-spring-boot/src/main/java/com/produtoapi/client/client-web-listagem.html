@@ -15,6 +15,8 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -102,10 +104,14 @@
                     const cellId = row.insertCell(0);
                     const cellNome = row.insertCell(1);
                     const cellValor = row.insertCell(2);
+                    const cellquant = row.insertCell(3);
+                    const cellStatus = row.insertCell(4);
 
                     cellId.textContent = produto.id;
                     cellNome.textContent = produto.nome;
                     cellValor.textContent = produto.valor;
+                    cellquant.textContent = produto.quantidade;
+                    cellStatus.textContent = produto.status;
                     totalProdutos++;
                 });
                 // Exibe o total de produtos
